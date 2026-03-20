@@ -1,4 +1,5 @@
 import { useCart } from '../context/CartContext';
+import { useNavigate } from 'react-router-dom';
 
 interface CartProps {
     isOpen: boolean;
@@ -7,6 +8,7 @@ interface CartProps {
 
 export function Cart({ isOpen, onClose }: CartProps) {
     const { cartItems, updateQuantity, removeFromCart, cartTotal } = useCart();
+    const navigate = useNavigate();
 
     if (!isOpen) return null;
 
@@ -108,7 +110,13 @@ export function Cart({ isOpen, onClose }: CartProps) {
                                 ${cartTotal.toFixed(2)}
                             </span>
                         </div>
-                        <button className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3.5 px-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-primary-600/30 flex items-center justify-center gap-2">
+                        <button 
+                            onClick={() => {
+                                onClose();
+                                navigate('/checkout');
+                            }}
+                            className="w-full bg-primary-600 hover:bg-primary-700 text-white py-3.5 px-4 rounded-xl font-bold text-lg transition-colors shadow-lg shadow-primary-600/30 flex items-center justify-center gap-2"
+                        >
                             Proceed to Checkout
                             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
