@@ -1,0 +1,19 @@
+[ {
+  "productType" : "PERISHABLE",
+  "productId" : "P1",
+  "name" : "Milk",
+  "price" : 200.0,
+  "expiryDate" : "2026-05-10"
+}, {
+  "productType" : "PERISHABLE",
+  "productId" : "P1",
+  "name" : "Milk",
+  "price" : 200.0,
+  "expiryDate" : "2026-05-10"
+}, {
+  "productType" : "PERISHABLE",
+  "productId" : "P1",
+  "name" : "Milk",
+  "price" : 200.0,
+  "expiryDate" : "2026-05-10"
+} ]
