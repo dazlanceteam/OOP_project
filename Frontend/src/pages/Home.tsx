@@ -95,7 +95,7 @@ export function Home() {
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                    <Link to="/" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
+                    <Link to="/categories/produce" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
                         <img src="https://images.unsplash.com/photo-1610348725531-843dff563e2c?auto=format&fit=crop&q=80&w=800" alt="Produce" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 p-6">
@@ -103,7 +103,7 @@ export function Home() {
                             <p className="text-gray-200 text-sm font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">Shop Farm Fresh ➔</p>
                         </div>
                     </Link>
-                    <Link to="/" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
+                    <Link to="/categories/dairy" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
                         <img src="https://images.unsplash.com/photo-1628088062854-d1870b4553da?auto=format&fit=crop&q=80&w=800" alt="Dairy" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 p-6">
@@ -111,7 +111,7 @@ export function Home() {
                             <p className="text-gray-200 text-sm font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">Shop Dairy ➔</p>
                         </div>
                     </Link>
-                    <Link to="/" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
+                    <Link to="/categories/meat" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
                         <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?auto=format&fit=crop&q=80&w=800" alt="Meat" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 p-6">
@@ -119,7 +119,7 @@ export function Home() {
                             <p className="text-gray-200 text-sm font-medium transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">Shop Meats ➔</p>
                         </div>
                     </Link>
-                    <Link to="/" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
+                    <Link to="/categories/bakery" className="group relative h-64 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow block">
                         <img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&q=80&w=800" alt="Bakery" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
                         <div className="absolute inset-0 bg-gradient-to-t from-gray-900/80 via-gray-900/20 to-transparent"></div>
                         <div className="absolute inset-x-0 bottom-0 p-6">

@@ -1,4 +1,4 @@
-import type { Product } from '../data/dummyData';
+import type { Product } from '../types';
 import { useCart } from '../context/CartContext';
 import { Link } from 'react-router-dom';
 
@@ -10,13 +10,13 @@ export function ProductCard({ product }: ProductCardProps) {
     const { addToCart, cartItems } = useCart();
 
     // Check how many of this item are already in the cart
-    const cartItem = cartItems.find((item) => item.id === product.id);
+    const cartItem = cartItems.find((item) => item.productId === product.productId);
     const quantityInCart = cartItem ? cartItem.quantity : 0;
 
     return (
         <div className="bg-white rounded-2xl overflow-hidden card-hover border border-gray-100 flex flex-col h-full group">
 
-            <Link to={`/product/${product.id}`} className="flex-1 flex flex-col focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-t-2xl">
+            <Link to={`/product/${product.productId}`} className="flex-1 flex flex-col focus:outline-none focus:ring-2 focus:ring-primary-500 rounded-t-2xl">
                 {/* Image Container with aspect ratio */}
                 <div className="relative w-full pt-[75%] overflow-hidden bg-gray-100 flex-shrink-0">
                     <img

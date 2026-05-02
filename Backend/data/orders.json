@@ -1,0 +1,15 @@
+[ {
+  "orderId" : "O-100",
+  "userId" : "U-100",
+  "cartId" : "C-100",
+  "status" : "PENDING",
+  "shippingAddress" : "123 Main St",
+  "orderDate" : "2026-05-02"
+}, {
+  "orderId" : "O-102458",
+  "userId" : "U-48f8ca0d",
+  "cartId" : "C-U-48f8ca0d",
+  "status" : "PENDING",
+  "shippingAddress" : "878",
+  "orderDate" : "2026-05-02"
+} ]
