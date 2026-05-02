@@ -53,7 +53,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
                         </div>
                     ) : (
                         cartItems.map((item) => (
-                            <div key={item.id} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
+                            <div key={item.productId} className="flex gap-4 p-4 bg-gray-50 rounded-2xl border border-gray-100">
                                 <img
                                     src={item.imageUrl}
                                     alt={item.name}
@@ -64,7 +64,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
                                         <div className="flex justify-between items-start">
                                             <h3 className="text-sm font-bold text-gray-900 line-clamp-1">{item.name}</h3>
                                             <button
-                                                onClick={() => removeFromCart(item.id)}
+                                                onClick={() => removeFromCart(item.productId)}
                                                 className="text-gray-400 hover:text-red-500 transition-colors"
                                             >
                                                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,7 +79,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
                                     <div className="flex items-center gap-3">
                                         <div className="flex items-center bg-white border border-gray-200 rounded-lg shadow-sm">
                                             <button
-                                                onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                                                onClick={() => updateQuantity(item.productId, item.quantity - 1)}
                                                 className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary-600 hover:bg-primary-50 rounded-l-lg transition-colors"
                                             >
                                                 -
@@ -88,7 +88,7 @@ export function Cart({ isOpen, onClose }: CartProps) {
                                                 {item.quantity}
                                             </span>
                                             <button
-                                                onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                                                onClick={() => updateQuantity(item.productId, item.quantity + 1)}
                                                 className="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-primary-600 hover:bg-primary-50 rounded-r-lg transition-colors"
                                             >
                                                 +

@@ -1,14 +1,34 @@
 import { useParams, Link } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
-import { mockProducts } from '../data/dummyData';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import type { Product } from '../types';
 
 export function ProductDetail() {
     const { id } = useParams<{ id: string }>();
     const { addToCart } = useCart();
     const [localQuantity, setLocalQuantity] = useState(1);
+    const [product, setProduct] = useState<Product | null>(null);
+    const [loading, setLoading] = useState(true);
 
-    const product = mockProducts.find(p => p.id === id);
+    useEffect(() => {
+        const fetchProduct = async () => {
+            try {
+                const res = await fetch(`http://localhost:8080/api/products/all`);
+                if (res.ok) {
+                    const data: Product[] = await res.json();
+                    const found = data.find(p => p.productId === id);
+                    setProduct(found || null);
+                }
+            } catch (error) {
+                console.error("Failed to load product", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        fetchProduct();
+    }, [id]);
+
+    if (loading) return <div className="text-center py-24">Loading product details...</div>;
 
     if (!product) {
         return (

@@ -25,7 +25,7 @@ export function Categories() {
         {ALL_CATEGORIES.map((cat) => (
           <Link 
             key={cat.id} 
-            to="/" 
+            to={`/categories/${cat.id}`} 
             className="group relative flex flex-col h-72 md:h-80 rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 block border border-gray-100 bg-white"
           >
             {/* Image Container */}

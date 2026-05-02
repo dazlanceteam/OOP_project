@@ -1,22 +1,69 @@
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export function Checkout() {
   const { cartItems, cartTotal, clearCart } = useCart();
+  const { user } = useAuth();
   const [isProcessing, setIsProcessing] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
-  const handlePayment = (e: React.FormEvent) => {
+  const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) {
+      alert("Please log in or register to proceed with checkout.");
+      window.location.href = '/login';
+      return;
+    }
     setIsProcessing(true);
     
-    // Simulate payment processing delay
-    setTimeout(() => {
-      setIsProcessing(false);
+    try {
+      const newOrderId = 'O-' + Date.now().toString().slice(-6);
+      const newPaymentId = 'PAY-' + Date.now().toString().slice(-6);
+
+      // 1. Place Order first (since payment needs orderId)
+      const addressInput = (e.target as any).elements[2]?.value || 'Default Address'; // fallback
+      
+      const orderRes = await fetch('http://localhost:8080/api/orders/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          orderId: newOrderId,
+          userId: user.userId, 
+          cartId: `C-${user.userId}`, 
+          status: 'PENDING',
+          shippingAddress: addressInput,
+          orderDate: new Date().toISOString().split('T')[0]
+        })
+      });
+
+      if (!orderRes.ok) throw new Error('Order placement failed');
+
+      // 2. Process Payment
+      const paymentRes = await fetch('http://localhost:8080/api/payments/add', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          paymentId: newPaymentId,
+          orderId: newOrderId,
+          userId: user.userId, 
+          amount: cartTotal, 
+          paymentMethod: 'CREDIT_CARD',
+          paymentStatus: 'COMPLETED'
+        })
+      });
+
+      if (!paymentRes.ok) throw new Error('Payment processing failed');
+
       setIsSuccess(true);
       clearCart();
-    }, 2000);
+    } catch (error) {
+      console.error('Checkout error:', error);
+      alert('An error occurred during checkout. Please try again.');
+    } finally {
+      setIsProcessing(false);
+    }
   };
 
   if (isSuccess) {
@@ -156,7 +203,7 @@ export function Checkout() {
              
              <div className="space-y-4 max-h-64 overflow-y-auto pr-2 mb-6 cart-scrollbar">
                {cartItems.map((item) => (
-                 <div key={item.id} className="flex gap-4 p-3 bg-white border border-gray-100 rounded-2xl shadow-sm">
+                 <div key={item.productId} className="flex gap-4 p-3 bg-white border border-gray-100 rounded-2xl shadow-sm">
                     <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover rounded-xl" />
                     <div className="flex-1">
                        <h4 className="font-bold text-gray-900 text-sm">{item.name}</h4>
